@@ -15,11 +15,26 @@ The code above is an example of 'function declaration.' Please re-write the func
 */
 
 // RE-WRITE THE ABOVE FUNCTION IN 'FUNCTION EXPRESSION' SYNTAX HERE.
+const findGrape2 = function (arr) {
+    for(let i=0; i<arr.length; i++) {
+        if(arr[i].color === "purple") {
+            return console.log(`The fruit with index ${arr.indexOf(arr[i])} is a grape`)
+        } 
+    }
+}
+
+
 
 
 
 // RE-WRITE THE ABOVE FUNCTION IN 'ARROW FUNCTION' SYNTAX HERE.
-
+const findGrape3 = (arr) => {
+    for(let i=0; i<arr.length; i++) {
+        if(arr[i].color === "purple") {
+            return console.log(`The fruit with index ${arr.indexOf(arr[i])} is a grape`)
+        } 
+    }
+}
 
 
 ////////// PROBLEM 2 //////////
@@ -28,9 +43,11 @@ Write a one line function (give a name of your choice) with an implicit return t
 */
 
 // CODE HERE
+const twoParams = (parameter1, parameter2) => `The first parameter is ${parameter1}. The second parameter is ${parameter2}`
 
 
 // INVOKE THE FUNCTION HERE. THE PARAMETERS TAKE ANY DATATYPE.
+console.log(twoParams(1, true))
 
 
 ////////// PROBLEM 3 //////////
@@ -40,9 +57,18 @@ Then, outside of the greeting function, invoke the greeting function, passing in
 */
 
 // CODE 'GREETING FUNCTION' HERE
+function greeting (firstName, lastName, callback) {
+    let fullName = firstName + lastName
+    callback(fullName)
+}
 
+function callBackFunction (fullName) {
+    console.log(`Hello, my full name is ${fullName}`)
+    
+}
 
 // INVOKE 'GREETING FUNCTION' HERE
+greeting("Derek", " Wheeler", callBackFunction)
 
 
 ////////// PROBLEM 4 //////////
@@ -58,6 +84,16 @@ Write a function called 'pricesPlusTax' that takes 2 params: an array ('prices' 
 */
 
 // CODE HERE
+function pricesPlusTax (prices, callback) {
+    for (let i = 0; i < prices.length; i++) {
+        totalCost.push(prices[i] * 1.2)
+    }
+    callback(totalCost)
+}
+
+function printFunction (totalCost) {
+    console.log(`The new array plus tax = ${totalCost}`)
+}
 
 
 /* 
@@ -65,6 +101,8 @@ Invoke the 'pricesPlusTax' function, passing in the 'prices' array and a callbac
 */
 
 // CODE HERE
+pricesPlusTax(prices, printFunction)
+
 
 
 ////////// PROBLEM 5 //////////
@@ -78,6 +116,15 @@ The inner function should run this logic: if the first number passing in is grea
 */
 
 // CODE HERE
+function multiplyingFactory(x) {
+    return function (y) {
+        if (x >= 5) {
+            console.log(x * y)
+        } else {
+            console.log("Cannot multiply: the first number is smaller than 5.")
+        }
+    }
+}
 
 
 /* 
@@ -85,7 +132,7 @@ Let's invoke the 'multiplyingFactory' function that will return another function
 */
 
 // CODE HERE
-
+const timesFour = multiplyingFactory(5)
 
 /* 
 Now, timesFour is the new function (the inner function that was being returned when we invoked 'multiplyingFactory' function). The number 3 that we passed in as a first number is now saved in the 'timesFour' function. 
@@ -96,6 +143,7 @@ Run the code in node to see the printed result. You should see "Cannot multiply:
 */
 
 // INVOKE 'timesFour' HERE
+timesFour(4)
 
 
 /* 
